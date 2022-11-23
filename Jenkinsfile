@@ -12,7 +12,9 @@ pipeline {
         AWS_ACCESS_KEY = credentials('AWS_ACCESS_KEY') 
     }
     options{
-       // buildDiscarder(logRotator(numToKeepStr: '1'))
+         buildDiscarder(logRotator(numToKeepStr: '3'))
+        disableConcurrentBuilds()
+        timeout(time: 1, unit: 'MINUTES')
     }
 
     stages {
