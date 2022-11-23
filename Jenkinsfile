@@ -12,5 +12,13 @@ pipeline {
                 echo 'two'
             }
         }
+        stage('third stage'){
+            steps{
+                sh '''echo aws
+                      echo devOps
+                      echo ansible
+                      echo jenkins'''
+            }
+        }
     }
 }
