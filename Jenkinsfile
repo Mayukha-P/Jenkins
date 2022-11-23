@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment{
         ENV_URL= "pipeline.google.com"
+        AWS_ACCESS_KEY = credentials('AWS_ACCESS_KEY') 
     }
 
     stages {
@@ -9,6 +10,7 @@ pipeline {
             steps {
                sh 'echo one' 
                sh 'echo env_url is ${ENV_URL}'
+               sh 'echo key is ${AWS_ACCESS_KEY}'
             }
         }
         stage('second stage') {
