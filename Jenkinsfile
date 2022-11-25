@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent java-node
     // parameters {
     //   string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
     //    text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
@@ -11,6 +11,7 @@ pipeline {
     environment{
         ENV_URL= "pipeline.google.com"
         AWS_ACCESS_KEY = credentials('AWS_ACCESS_KEY') 
+         SSH_CRED = credentials('SSH-CRED')
     }
     options{
          buildDiscarder(logRotator(numToKeepStr: '3'))
@@ -26,6 +27,7 @@ pipeline {
         parallel {
         stage('first stage') {
             steps {
+               sh "hostname"
                sh 'mvn --version'
                sh "echo One"
                sh "env"
