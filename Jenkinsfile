@@ -22,11 +22,17 @@ pipeline {
         }
 
     stages {
+        stage('parallet stage') {
+        parallel {
         stage('first stage') {
             steps {
+               sh 'mvn --version'
+               sh "echo One"
+               sh "env"
+               sh "sleep 10"
                sh 'echo one' 
-               sh 'echo env_url is ${ENV_URL}'
-               sh 'echo key is ${AWS_ACCESS_KEY}'
+              // sh 'echo env_url is ${ENV_URL}'
+               //sh 'echo key is ${AWS_ACCESS_KEY}'
             }
         }
         stage('second stage') {
@@ -41,6 +47,8 @@ pipeline {
                       echo ansible
                       echo jenkins'''
             }
-        }
+         }
+      }
     }
+  }
 }
